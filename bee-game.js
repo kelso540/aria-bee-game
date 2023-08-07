@@ -1,91 +1,18 @@
-var hideYesNo = false; 
-var menuHide = false; 
-var navMenu = document.getElementById("positionHeader");
-var hiddenMenu = document.getElementById("hiddenMenu"); 
-var threeLineMenu = document.getElementById("threeLines"); 
-var detailsArrows = document.getElementById("detailsArrow");
-function hideMenu(){
-    menuHide = !menuHide;    
-    if(menuHide === false){  
-        fadeOUT1();
-    }
-    if(menuHide === true){
-        fadeIN1();
-    }
-}
-function fadeIN1(){
-    threeLineMenu.src = "homePagePics/blackCross.png";
-    hiddenMenu.style.display = "flex";
-    hiddenMenu.style.opacity = "25%";
-    hiddenMenu.style.height = "100px";
-    setTimeout(fadeIN2, 40);
-}
-function fadeIN2(){
-    hiddenMenu.style.opacity = "50%";
-    hiddenMenu.style.height = "200px";
-    setTimeout(fadeIN3, 40);
-}
-function fadeIN3(){
-    hiddenMenu.style.opacity = "75%";
-    hiddenMenu.style.height = "300px";
-    setTimeout(fadeIN4, 40);
-}
-function fadeIN4(){
-    hiddenMenu.style.opacity = "100%";
-    hiddenMenu.style.height = "450px";
-}
-function fadeOUT1(){
-    threeLineMenu.src = "homePagePics/threeLines.png";
-    hiddenMenu.style.opacity = "75%";
-    hiddenMenu.style.height = "300px";
-    setTimeout(fadeOUT2, 40);
-}
-function fadeOUT2(){
-    hiddenMenu.style.opacity = "50%";
-    hiddenMenu.style.height = "200px";
-    setTimeout(fadeOUT3, 40);
-}
-function fadeOUT3(){
-    hiddenMenu.style.opacity = "25%";
-    hiddenMenu.style.height = "100px";
-    setTimeout(fadeOUT4, 40);
-}
-function fadeOUT4(){
-    hiddenMenu.style.opacity = "0%";
-    hiddenMenu.style.display = "none";
-}
-function arrowChange(){
-    hideYesNo = !hideYesNo; 
-    if (hideYesNo === true){
-        detailsArrows.src = "homePagePics/arrowRight.png";
-        setTimeout(arrowFlipUp, 50); 
-    }
-    if (hideYesNo === false){
-        detailsArrows.src = "homePagePics/arrowRight.png";
-        setTimeout(arrowFlipDown, 50);
-    }
-}
-function arrowFlipUp(){
-    detailsArrows.src = "homePagePics/upArrow.png";
-} 
-function arrowFlipDown(){
-    detailsArrows.src = "homePagePics/downArrow.png";
-}
-var c = document.getElementById("myCanvasActual");
-var ctx = c.getContext("2d"); 
-var c2 = document.getElementById("starterCanvasActual");
-var ctx2 = c2.getContext("2d"); 
-var c3 = document.getElementById("secondaryCanvasActual");
-var ctx3 = c3.getContext("2d"); 
-var TILE_SIZE = 32; 
+let c = document.getElementById("myCanvasActual");
+let ctx = c.getContext("2d"); 
+let c2 = document.getElementById("starterCanvasActual");
+let ctx2 = c2.getContext("2d"); 
+let c3 = document.getElementById("secondaryCanvasActual");
+let ctx3 = c3.getContext("2d"); 
+let TILE_SIZE = 32; 
 let primary = {
     HTML: document.querySelector("html"), 
     upBtn: document.getElementById("up"), 
     leftBtn: document.getElementById("left"),
     rightBtn: document.getElementById("right"),
     downBtn: document.getElementById("down"),
-    ctxWidth: 800, 
-    ctxHeight: 1200, 
+    ctxWidth: 352, 
+    ctxHeight: 512, 
     upMovement: 0, 
     leftMovement: 0,
     rightMovement: 0,
@@ -142,30 +69,30 @@ let images = {
     potAlmost: new Image(), 
     potFull: new Image(),      
 }; 
-images.mapBackground.src = "testMap.png";
-images.playerRight.src = "mazePictures/robotRight.png";
-images.playerLeft.src = "mazePictures/robotLeft.png";
-images.beeFlapRDown.src = "mazePictures/beeFlapRDown.png";
-images.beeFlapLDown.src = "mazePictures/beeFlapLDown.png";
-images.beeHivePic1.src = "mazePictures/beeHive1.png";
-images.beeHivePic2.src = "mazePictures/beeHive2.png";
-images.beeHivePic3.src = "mazePictures/beeHive3.png";
-images.beeHivePic4.src = "mazePictures/beeHive4.png";
-images.beeWithPollenL.src = "mazePictures/robotLeftWithPollen.png";
-images.beeWithPollenR.src = "mazePictures/robotRightWithPollen.png";
-images.flowerA.src = "mazePictures/flowerA.png";
-images.flowerB.src = "mazePictures/flowerB.png";
-images.flowerC.src = "mazePictures/flowerC.png";
-images.flowerD.src = "mazePictures/flowerD.png";
-images.treePic.src = "mazePictures/tree.png";
-images.beeWithPollenLFlap.src = "mazePictures/beeFlapLDownPollen.png";
-images.beeWithPollenRFlap.src = "mazePictures/beeFlapRDownPollen.png";
-images.potEmpty.src = "mazePictures/honeyPot.png";
-images.potSliver.src = "mazePictures/honeyPotSliver.png";
-images.potQuarter.src = "mazePictures/honeyPotQuarter.png";
-images.potHalf.src = "mazePictures/honeyPotHalf.png";
-images.potAlmost.src = "mazePictures/honeyPotAlmost.png";
-images.potFull.src = "mazePictures/honeyPotFull.png";
+images.mapBackground.src = "/assets/testMap.png";
+images.playerRight.src = "/assets/mazePictures/robotRight.png";
+images.playerLeft.src = "/assets/mazePictures/robotLeft.png";
+images.beeFlapRDown.src = "/assets/mazePictures/beeFlapRDown.png";
+images.beeFlapLDown.src = "/assets/mazePictures/beeFlapLDown.png";
+images.beeHivePic1.src = "/assets/mazePictures/beeHive1.png";
+images.beeHivePic2.src = "/assets/mazePictures/beeHive2.png";
+images.beeHivePic3.src = "/assets/mazePictures/beeHive3.png";
+images.beeHivePic4.src = "/assets/mazePictures/beeHive4.png";
+images.beeWithPollenL.src = "/assets/mazePictures/robotLeftWithPollen.png";
+images.beeWithPollenR.src = "/assets/mazePictures/robotRightWithPollen.png";
+images.flowerA.src = "/assets/mazePictures/flowerA.png";
+images.flowerB.src = "/assets/mazePictures/flowerB.png";
+images.flowerC.src = "/assets/mazePictures/flowerC.png";
+images.flowerD.src = "/assets/mazePictures/flowerD.png";
+images.treePic.src = "/assets/mazePictures/tree.png";
+images.beeWithPollenLFlap.src = "/assets/mazePictures/beeFlapLDownPollen.png";
+images.beeWithPollenRFlap.src = "/assets/mazePictures/beeFlapRDownPollen.png";
+images.potEmpty.src = "/assets/mazePictures/honeyPot.png";
+images.potSliver.src = "/assets/mazePictures/honeyPotSliver.png";
+images.potQuarter.src = "/assets/mazePictures/honeyPotQuarter.png";
+images.potHalf.src = "/assets/mazePictures/honeyPotHalf.png";
+images.potAlmost.src = "/assets/mazePictures/honeyPotAlmost.png";
+images.potFull.src = "/assets/mazePictures/honeyPotFull.png";
 class Player {
     constructor(img, x, y, width, height){
         this.img = img; 
@@ -177,24 +104,17 @@ class Player {
 }
 class MapObject extends Player {}
 class Sound {
-    constructor(src, time){
+    constructor(src){
         this.src = src;
-        this.time = time;  
         this.sound = document.createElement("audio");
         this.sound.setAttribute("preload", "auto");
         this.sound.setAttribute("controls", "none");
-        this.sound.setAttribute("class", this.src); 
+        this.sound.setAttribute("class", this.time); 
         this.sound.style.display = "none";
     }
     play(){
         this.sound.src = this.src;
-        document.body.appendChild(this.sound);
         this.sound.play();
-        setTimeout(this.remove, this.time); 
-    }
-    remove(){
-        let sound = document.querySelector("." + this.src); 
-        document.body.removeChild(sound);
     }
     pause(){
         this.sound.pause();
@@ -206,11 +126,11 @@ let playerPoints = new Player(images.playerRight, 0, 0, 50, 50);
 let newFlower = new MapObject(images.flowerD, 600, 1000, 100, 100); 
 let beeHive = new MapObject(images.beeHivePic1, 1350, 450, 250, 250); 
 let honeyPot= new MapObject(images.potEmpty, 150, 300, 150, 200);
-let beeHiveNoise = new Sound("sounds/beeHiveNoise.mp4", 12000);
-let getFlowerNoise = new Sound("sounds/getFlower.mp4", 1000); 
-let walkAroundNoise = new Sound("sounds/walkAround.mp4", 12000);
-let deliverHoney = new Sound("sounds/deliverHoney.mp4", 4000); 
-let beeFlyAround = new Sound("sounds/beeFlyAround.mp4", 8000); 
+let beeHiveNoise = new Sound("/assets/sounds/beeHiveNoise.mp4");
+let getFlowerNoise = new Sound("/assets/sounds/getFlower.mp4"); 
+let walkAroundNoise = new Sound("/assets/sounds/walkAround.mp4");
+let deliverHoney = new Sound("/assets/sounds/deliverHoney.mp4"); 
+let beeFlyAround = new Sound("/assets/sounds/beeFlyAround.mp4"); 
 let beeMovementFlapper = () => primary.beeMovementCounter++;
 let beeHiveCounter = () => primary.beeHiveMovementCounter++;
 let hiveNoiseTrigger = (soundLength) => {
@@ -231,8 +151,8 @@ let flyAroundTrigger = () => {
     setTimeout(flyAroundTrigger, 8000);    
 }
 let getDistance = (entity1, entity2) => {	//return distance (number)
-    var vx = entity1.x - entity2.x;
-    var vy = entity1.y - entity2.y;
+    let vx = entity1.x - entity2.x;
+    let vy = entity1.y - entity2.y;
     primary.distance = Math.sqrt(vx*vx+vy*vy);
     return Math.sqrt(vx*vx+vy*vy);
 };
@@ -243,13 +163,13 @@ let testHitRectObject = (object1, object2) => { //collision tester part two.
         && object2.y <= object1.y + object1.height;
 };
 let testHitRect = (object1, object2) => { //collision tester part one.  
-    var rect1 = {
+    let rect1 = {
         x: object1.x - object1.width / 2,
         y: object1.y - object1.height / 2,
         width: object1.width, 
         height: object1.height
     }
-    var rect2 = {
+    let rect2 = {
         x: object2.x - object2.width / 2 + 170,
         y: object2.y - object2.height / 2,
         width: object2.width - 150,
@@ -257,7 +177,7 @@ let testHitRect = (object1, object2) => { //collision tester part one.
     }
     return testHitRectObject(rect1, rect2);
 };
-var array = [18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+let array = [18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -357,10 +277,10 @@ var array = [18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var array2D = [];
-for(var i = 0 ; i < 100; i++){
+let array2D = [];
+for(let i = 0 ; i < 100; i++){
 	array2D[i] = [];
-	for(var j = 0 ; j < 100; j++){
+	for(let j = 0 ; j < 100; j++){
 		array2D[i][j] = array[i * 100 + j];
 	}
 };
@@ -379,26 +299,26 @@ let beginningSegment = () => {
 };
 let startingCanvas = () => {
     ctx2.clearRect(0, 0, primary.ctxWidth, primary.ctxHeight);
-    ctx2.font = "small-caps bold 45px Trebuchet MS";
+    ctx2.font = "small-caps bold 25px Trebuchet MS";
     ctx2.fillStyle = "orange";
     ctx2.textAlign = "center";
-    ctx2.fillText("Hello little buzzing bee!", 400, 100); 
-    ctx2.fillText("Time to collect some honey!", 400, 150); 
-    ctx2.fillText("Collect pollen from flowers", 400, 250); 
-    ctx2.fillText("and bring them back to your hive", 400, 300);
-    ctx2.fillText("to make some honey!", 400, 350);
-    ctx2.drawImage(images.playerRight, 100, 620, 300, 250); 
-    ctx2.drawImage(newFlower.img, 400, 770, 220, 300);
+    ctx2.fillText("Hello little buzzing bee!", 180, 100); 
+    ctx2.fillText("Time to collect some honey!", 180, 150); 
+    ctx2.fillText("Collect pollen from flowers", 180, 230); 
+    ctx2.fillText("and bring them back to your hive", 180, 280);
+    ctx2.fillText("to make some honey!", 180, 330);
+    ctx2.drawImage(images.playerRight, 40, 360, 100, 150); //img, x, y, width, height
+    ctx2.drawImage(newFlower.img, 180, 370, 90, 150);
 
         if (primary.beeMovementCounter === 0) {
-                ctx2.drawImage(images.playerRight, 100, 620, 300, 250);
-                ctx2.drawImage(newFlower.img, 400, 770, 220, 300);            
+                ctx2.drawImage(images.playerRight, 40, 360, 100, 150);
+                ctx2.drawImage(newFlower.img, 180, 370, 90, 150);            
             }
         if (primary.beeMovementCounter === 3) {
-                ctx2.drawImage(images.playerRight, 101, 621, 300, 250); 
-                ctx2.drawImage(newFlower.img, 400, 769, 220, 300);            
+                ctx2.drawImage(images.playerRight, 41, 361, 100, 150); 
+                ctx2.drawImage(newFlower.img, 179, 369, 90, 150);            
             }
-        if (primary.beeMovementCounter === 4) {
+        if (primary.beeMovementCounter >= 4) {
             primary.beeMovementCounter = 0;
             }
 };
@@ -424,20 +344,20 @@ let endStart = () => {
     ctx3.font = "small-caps bold 45px Trebuchet MS";
     ctx3.fillStyle = "orange";
     ctx3.textAlign = "center";
-    ctx3.fillText("You did it!", 400, 150); 
-    ctx3.fillText("Your hive is filled with honey!", 400, 200); 
-    ctx3.fillText("Your set for the Winter!", 400, 250); 
-    ctx3.fillText("Great Job!", 400, 300);
-    ctx3.drawImage(images.playerRight, 100, 620, 300, 250); 
-    ctx3.drawImage(images.potFull, 400, 770, 220, 300);
+    ctx3.fillText("You did it!", 180, 50); 
+    ctx3.fillText("Your hive is filled with honey!", 180, 80); 
+    ctx3.fillText("Your set for the Winter!", 180, 110); 
+    ctx3.fillText("Great Job!", 180, 150);
+    ctx3.drawImage(images.playerRight, 40, 360, 100, 150); 
+    ctx3.drawImage(images.potFull, 180, 370, 90, 150);
 
         if (primary.beeMovementCounter === 0) {
-                ctx3.drawImage(images.playerRight, 100, 620, 300, 250);
-                ctx3.drawImage(images.potFull, 400, 770, 220, 300);            
+                ctx3.drawImage(images.playerRight, 40, 360, 100, 150);
+                ctx3.drawImage(images.potFull, 180, 370, 90, 150);            
             }
         if (primary.beeMovementCounter === 3) {
-                ctx3.drawImage(images.playerRight, 101, 621, 300, 250); 
-                ctx3.drawImage(images.potFull, 400, 769, 220, 300);            
+                ctx3.drawImage(images.playerRight, 39, 359, 100, 150); 
+                ctx3.drawImage(images.potFull, 181, 371, 90, 150);            
             }
         if (primary.beeMovementCounter === 4) {
             primary.beeMovementCounter = 0;
@@ -487,7 +407,7 @@ let end = () => {
     primary.ender = setInterval(endStart, 40);
 };
 Maps = function(id,imgSrc,grid){
-	var self = {
+	let self = {
 		id:id,
 		image:new Image(),
         grid:grid,
@@ -497,8 +417,8 @@ Maps = function(id,imgSrc,grid){
 	self.image.src = imgSrc; 
 	
 	self.isPositionWall = function(pt){
-		var gridX = Math.floor(pt.x / TILE_SIZE);
-		var gridY = Math.floor(pt.y / TILE_SIZE);
+		let gridX = Math.floor(pt.x / TILE_SIZE);
+		let gridY = Math.floor(pt.y / TILE_SIZE);
 		if(gridX < 0 || gridX >= self.grid[0].length)
 			return true;
 		if(gridY < 0 || gridY >= self.grid.length)
@@ -517,8 +437,8 @@ Maps = function(id,imgSrc,grid){
                 // this.height = height; 
 	
 	self.draw = function(set){
-		var x = primary.ctxWidth/2 - player1.x;
-		var y = primary.ctxHeight/2 - player1.y;
+		let x = primary.ctxWidth/2 - player1.x;
+		let y = primary.ctxHeight/2 - player1.y;
 		ctx.drawImage(self.image, x, y, self.width, self.height); 
         ctx.drawImage(tree.img, tree.x, tree.y, tree.width, tree.height);
         ctx.drawImage(set.img, set.x, set.y, set.width, set.height);
@@ -556,19 +476,19 @@ let createNewFlower = () => {
         return createNewFlower(); 
     }
 };
-Maps.current = Maps('area','testMap.png',array2D); 
+Maps.current = Maps('area','/assets/testMap.png',array2D); 
 let canvas_ctxWidth = Maps.current.width; 
 let canvas_ctxHeight = Maps.current.width;     
 let moveUp = () => {
-    var self = player1; 
-    var oldX = self.x;
-    var oldY = self.y;
-    var oldFX = newFlower.x;
-    var oldFY = newFlower.y;
-    var hiveFX = beeHive.x;
-    var hiveFY = beeHive.y;
-    var treeFX = tree.x;
-    var treeFY = tree.y;
+    let self = player1; 
+    let oldX = self.x;
+    let oldY = self.y;
+    let oldFX = newFlower.x;
+    let oldFY = newFlower.y;
+    let hiveFX = beeHive.x;
+    let hiveFY = beeHive.y;
+    let treeFX = tree.x;
+    let treeFY = tree.y;
     self.y -= 10;
     newFlower.y += 10;
     beeHive.y += 10; 
@@ -602,15 +522,15 @@ let moveUp = () => {
     }
 };
 let moveLeft = () => {
-    var self = player1;
-    var oldX = self.x;
-    var oldY = self.y; 
-    var oldFX = newFlower.x;
-    var oldFY = newFlower.y;
-    var hiveFX = beeHive.x;
-    var hiveFY = beeHive.y;
-    var treeFX = tree.x;
-    var treeFY = tree.y;
+    let self = player1;
+    let oldX = self.x;
+    let oldY = self.y; 
+    let oldFX = newFlower.x;
+    let oldFY = newFlower.y;
+    let hiveFX = beeHive.x;
+    let hiveFY = beeHive.y;
+    let treeFX = tree.x;
+    let treeFY = tree.y;
     self.x -= 10;
     newFlower.x += 10;
     beeHive.x += 10;
@@ -632,15 +552,15 @@ let moveLeft = () => {
     }
 };
 let moveRight = () => {
-    var self = player1;
-    var oldX = self.x;
-    var oldY = self.y;
-    var oldFX = newFlower.x;
-    var oldFY = newFlower.y;
-    var hiveFX = beeHive.x;
-    var hiveFY = beeHive.y;
-    var treeFX = tree.x;
-    var treeFY = tree.y;
+    let self = player1;
+    let oldX = self.x;
+    let oldY = self.y;
+    let oldFX = newFlower.x;
+    let oldFY = newFlower.y;
+    let hiveFX = beeHive.x;
+    let hiveFY = beeHive.y;
+    let treeFX = tree.x;
+    let treeFY = tree.y;
     self.x += 10; 
     newFlower.x -= 10;
     beeHive.x -= 10;
@@ -662,15 +582,15 @@ let moveRight = () => {
     }
 };
 let moveDown = () => {
-    var self = player1;
-    var oldX = self.x;
-    var oldY = self.y;
-    var oldFX = newFlower.x;
-    var oldFY = newFlower.y;
-    var hiveFX = beeHive.x;
-    var hiveFY = beeHive.y;
-    var treeFX = tree.x;
-    var treeFY = tree.y;
+    let self = player1;
+    let oldX = self.x;
+    let oldY = self.y;
+    let oldFX = newFlower.x;
+    let oldFY = newFlower.y;
+    let hiveFX = beeHive.x;
+    let hiveFY = beeHive.y;
+    let treeFX = tree.x;
+    let treeFY = tree.y;
     self.y += 10;
     newFlower.y -= 10; 
     beeHive.y -= 10;
@@ -844,8 +764,8 @@ let clearAll = () => {
 };
 
 let movePlayer = (set) => {  
-    var x = set.x - player1.x;
-    var y = set.y - player1.y;
+    let x = set.x - player1.x;
+    let y = set.y - player1.y;
     
     x += primary.ctxWidth/2;
     y += primary.ctxHeight/2;
@@ -967,15 +887,16 @@ let start = () => {                                                             
     movePlayer(player1);
     beeMovement(); 
     beeHiveMovement(beeHive);
-    var getFlower = getDistance(playerPoints, newFlower);
-    var getHive = testHitRect(playerPoints, beeHive);
-    var toHive = getDistance(playerPoints, beeHive); 
-    ctx.font = "17px Arial";
+    let getFlower = getDistance(playerPoints, newFlower);
+    let getHive = testHitRect(playerPoints, beeHive);
+    let toHive = getDistance(playerPoints, beeHive); 
+    ctx.font = "12px Arial";
     ctx.textAlign = "center";
     ctx.fillStyle = "#E8871E";
     if(primary.playerHoneyAmount === 0){
-        ctx.fillText("If you cant find the flower", 120, 50);
-        ctx.fillText("Click Here", 120, 80);
+        ctx.fillText("If you cant", 60, 20); //x, y
+        ctx.fillText("find the flower", 60, 30);
+        ctx.fillText("Click Here", 60, 40);
         ctx.font = "20px Arial";
         ctx.textAlign = "center";
         ctx.fillStyle = "#E8871E";
@@ -1025,35 +946,35 @@ let start = () => {                                                             
     }
     if(toHive > 200 && primary.playerHoneyAmount === 0){
         primary.honeyDropNoise = 0;  
-    }
+    }       
 };
-let resizeCanvas = () => { //resize canvas to page size(increase pixel COUNT). 
-    canvas_ctxWidth = window.innerWidth - 4;
-    canvas_ctxHeight = window.innerHeight - 4;
-    c.width = primary.ctxWidth; 
-    c.height = primary.ctxHeight; 
-    c.mozImageSmoothingEnabled = false; 
-    c.msImageSmoothingEnabled = false;
-    c.imageSmoothingEnabled = false;
-    c.style.width = ' ' + canvas_ctxWidth + 'px'; 
-    c.style.height  = ' ' + canvas_ctxHeight + 'px';
-    c2.width = primary.ctxWidth; 
-    c2.height = primary.ctxHeight; 
-    c2.mozImageSmoothingEnabled = false; 
-    c2.msImageSmoothingEnabled = false;
-    c2.imageSmoothingEnabled = false;
-    c2.style.width = ' ' + canvas_ctxWidth + 'px'; 
-    c2.style.height  = ' ' + canvas_ctxHeight + 'px';        
-    c3.width = primary.ctxWidth; 
-    c3.height = primary.ctxHeight; 
-    c3.mozImageSmoothingEnabled = false; 
-    c3.msImageSmoothingEnabled = false;
-    c3.imageSmoothingEnabled = false;
-    c3.style.width = ' ' + canvas_ctxWidth + 'px'; 
-    c3.style.height  = ' ' + canvas_ctxHeight + 'px';
-};
-window.addEventListener("resize", resizeCanvas); 
-resizeCanvas(); 
+// let resizeCanvas = () => { //resize canvas to page size(increase pixel COUNT). 
+//     canvas_ctxWidth = window.innerWidth - 4;
+//     canvas_ctxHeight = window.innerHeight - 4;
+//     c.width = primary.ctxWidth; 
+//     c.height = primary.ctxHeight; 
+//     c.mozImageSmoothingEnabled = false; 
+//     c.msImageSmoothingEnabled = false;
+//     c.imageSmoothingEnabled = false;
+//     c.style.width = ' ' + canvas_ctxWidth + 'px'; 
+//     c.style.height  = ' ' + canvas_ctxHeight + 'px';
+//     c2.width = primary.ctxWidth; 
+//     c2.height = primary.ctxHeight; 
+//     c2.mozImageSmoothingEnabled = false; 
+//     c2.msImageSmoothingEnabled = false;
+//     c2.imageSmoothingEnabled = false;
+//     c2.style.width = ' ' + canvas_ctxWidth + 'px'; 
+//     c2.style.height  = ' ' + canvas_ctxHeight + 'px';        
+//     c3.width = primary.ctxWidth; 
+//     c3.height = primary.ctxHeight; 
+//     c3.mozImageSmoothingEnabled = false; 
+//     c3.msImageSmoothingEnabled = false;
+//     c3.imageSmoothingEnabled = false;
+//     c3.style.width = ' ' + canvas_ctxWidth + 'px'; 
+//     c3.style.height  = ' ' + canvas_ctxHeight + 'px';
+// };
+// window.addEventListener("resize", resizeCanvas); 
+// resizeCanvas(); 
 beginningSegment();  
 primary.upBtn.addEventListener("mousedown", startUp); 
 primary.upBtn.addEventListener("mouseup", endUp);  
@@ -1080,6 +1001,6 @@ document.getElementById("endButtonDiv").addEventListener("click", beginningSegme
 document.getElementById("flowerBtn").addEventListener("click", createNewFlower); 
 
 
-document.querySelector("html").addEventListener('contextmenu', function(e){ //disable right click menu(for long click on mobile)
-    e.preventDefault();
-    });
+// document.querySelector("html").addEventListener('contextmenu', function(e){ //disable right click menu(for long click on mobile)
+//     e.preventDefault();
+//     });
