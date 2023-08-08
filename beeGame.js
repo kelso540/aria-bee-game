@@ -70,30 +70,30 @@ let images = {
     potAlmost: new Image(), 
     potFull: new Image(),      
 }; 
-images.mapBackground.src = "/assets/testMap.png";
-images.playerRight.src = "/assets/mazePictures/robotRight.png";
-images.playerLeft.src = "/assets/mazePictures/robotLeft.png";
-images.beeFlapRDown.src = "/assets/mazePictures/beeFlapRDown.png";
-images.beeFlapLDown.src = "/assets/mazePictures/beeFlapLDown.png";
-images.beeHivePic1.src = "/assets/mazePictures/beeHive1.png";
-images.beeHivePic2.src = "/assets/mazePictures/beeHive2.png";
-images.beeHivePic3.src = "/assets/mazePictures/beeHive3.png";
-images.beeHivePic4.src = "/assets/mazePictures/beeHive4.png";
-images.beeWithPollenL.src = "/assets/mazePictures/robotLeftWithPollen.png";
-images.beeWithPollenR.src = "/assets/mazePictures/robotRightWithPollen.png";
-images.flowerA.src = "/assets/mazePictures/flowerA.png";
-images.flowerB.src = "/assets/mazePictures/flowerB.png";
-images.flowerC.src = "/assets/mazePictures/flowerC.png";
-images.flowerD.src = "/assets/mazePictures/flowerD.png";
-images.treePic.src = "/assets/mazePictures/tree.png";
-images.beeWithPollenLFlap.src = "/assets/mazePictures/beeFlapLDownPollen.png";
-images.beeWithPollenRFlap.src = "/assets/mazePictures/beeFlapRDownPollen.png";
-images.potEmpty.src = "/assets/mazePictures/honeyPot.png";
-images.potSliver.src = "/assets/mazePictures/honeyPotSliver.png";
-images.potQuarter.src = "/assets/mazePictures/honeyPotQuarter.png";
-images.potHalf.src = "/assets/mazePictures/honeyPotHalf.png";
-images.potAlmost.src = "/assets/mazePictures/honeyPotAlmost.png";
-images.potFull.src = "/assets/mazePictures/honeyPotFull.png";
+images.mapBackground.src = "./public/assets/testMap.png";
+images.playerRight.src = "./public/assets/mazePictures/robotRight.png";
+images.playerLeft.src = "./public/assets/mazePictures/robotLeft.png";
+images.beeFlapRDown.src = "./public/assets/mazePictures/beeFlapRDown.png";
+images.beeFlapLDown.src = "./public/assets/mazePictures/beeFlapLDown.png";
+images.beeHivePic1.src = "./public/assets/mazePictures/beeHive1.png";
+images.beeHivePic2.src = "./public/assets/mazePictures/beeHive2.png";
+images.beeHivePic3.src = "./public/assets/mazePictures/beeHive3.png";
+images.beeHivePic4.src = "./public/assets/mazePictures/beeHive4.png";
+images.beeWithPollenL.src = "./public/assets/mazePictures/robotLeftWithPollen.png";
+images.beeWithPollenR.src = "./public/assets/mazePictures/robotRightWithPollen.png";
+images.flowerA.src = "./public/assets/mazePictures/flowerA.png";
+images.flowerB.src = "./public/assets/mazePictures/flowerB.png";
+images.flowerC.src = "./public/assets/mazePictures/flowerC.png";
+images.flowerD.src = "./public/assets/mazePictures/flowerD.png";
+images.treePic.src = "./public/assets/mazePictures/tree.png";
+images.beeWithPollenLFlap.src = "./public/assets/mazePictures/beeFlapLDownPollen.png";
+images.beeWithPollenRFlap.src = "./public/assets/mazePictures/beeFlapRDownPollen.png";
+images.potEmpty.src = "./public/assets/mazePictures/honeyPot.png";
+images.potSliver.src = "./public/assets/mazePictures/honeyPotSliver.png";
+images.potQuarter.src = "./public/assets/mazePictures/honeyPotQuarter.png";
+images.potHalf.src = "./public/assets/mazePictures/honeyPotHalf.png";
+images.potAlmost.src = "./public/assets/mazePictures/honeyPotAlmost.png";
+images.potFull.src = "./public/assets/mazePictures/honeyPotFull.png";
 class Player {
     constructor(img, x, y, width, height){
         this.img = img; 
@@ -127,11 +127,11 @@ let playerPoints = new Player(images.playerRight, 0, 0, 50, 50);
 let newFlower = new MapObject(images.flowerD, 600, 1000, 100, 100); 
 let honeyPot= new MapObject(images.potEmpty, (c.width/2) - 50, (c.height/2) + 90, 100, 150);
 let beeHive = new MapObject(images.beeHivePic1, 1250, 190, 250, 250); 
-let beeHiveNoise = new Sound("/assets/sounds/beeHiveNoise.mp4");
-let getFlowerNoise = new Sound("/assets/sounds/getFlower.mp4"); 
-let walkAroundNoise = new Sound("/assets/sounds/walkAround.mp4");
-let deliverHoney = new Sound("/assets/sounds/deliverHoney.mp4"); 
-let beeFlyAround = new Sound("/assets/sounds/beeFlyAround.mp4"); 
+let beeHiveNoise = new Sound("./public/assets/sounds/beeHiveNoise.mp4");
+let getFlowerNoise = new Sound("./public/assets/sounds/getFlower.mp4"); 
+let walkAroundNoise = new Sound("./public/assets/sounds/walkAround.mp4");
+let deliverHoney = new Sound("./public/assets/sounds/deliverHoney.mp4"); 
+let beeFlyAround = new Sound("./public/assets/sounds/beeFlyAround.mp4"); 
 let beeMovementFlapper = () => primary.beeMovementCounter++;
 let beeHiveCounter = () => primary.beeHiveMovementCounter++;
 let hiveNoiseTrigger = (soundLength) => {
@@ -449,7 +449,7 @@ let createNewFlower = () => {
         createNewFlower(); 
     }
 };
-Maps.current = Maps('area','/assets/testMap.png',array2D); 
+Maps.current = Maps('area','public/assets/testMap.png',array2D); 
 let canvas_ctxWidth = Maps.current.width; 
 let canvas_ctxHeight = Maps.current.width;     
 let moveUp = () => {
