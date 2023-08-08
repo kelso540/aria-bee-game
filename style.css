@@ -6,16 +6,22 @@ body{
 a{
   text-decoration: none;
 }
-button{
-  padding: 20px;
-}  
 #starterCanvasDiv{
   display: none;
   background-color: rgb(45, 133, 45);
+}
+#starterCanavasActual{
+  border: solid 2px; 
 } 
 #mainCanvasDiv{
   display: none;
   background-color: rgb(45, 133, 45); 
+  width: 352px;
+  margin: auto;
+  position: relative;
+}
+#myCanvasActual{
+  border: solid 2px;
 }
 #secondaryCanvasDiv{
   display: none;
@@ -24,8 +30,6 @@ button{
 #buttonsDiv{
   display: none;
   text-align: center;
-  position: relative;  
-  bottom: 250px; 
 }
 #startButtonDiv{
   display: none;
@@ -33,11 +37,10 @@ button{
   left: 50%;
   bottom: 10%; 
   translate: -50% 0; 
-  width: 50%;
 }
 #start{
   height: 100%; 
-  width: 100%; 
+  width: 100px; 
 }
 #start:active{
   box-shadow: inset 4px 8px 16px;
@@ -56,18 +59,19 @@ button{
   /* background-image: linear-gradient(90deg, rgb(255, 0, 195), rgb(106, 6, 106), rgb(142, 15, 164), rgb(90, 41, 128), rgb(100, 8, 176)); */
 }
 button{
-  border-radius: 70px;       
+  border-radius: 70px;  
+  padding: 10px;   
+  margin: 5px;  
   border: none; 
   background-color: orange; 
   box-shadow: inset 2px 4px 8px black; 
-  margin: 3px;
   font-family: Nunito; 
 }
 #newFlowerDiv{
   display: none;
   position: absolute;
-  top: 17%;
-  left: 2%;
+  top: 13%;
+  left: 1%;
 }
 button:active{
   box-shadow: inset 4px 8px 16px;

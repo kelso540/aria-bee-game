@@ -6,6 +6,9 @@ document.querySelector('#app').innerHTML = `
   </div>
   <div id="mainCanvasDiv">
     <canvas id="myCanvasActual" width="352" height="512"></canvas>
+    <div id="newFlowerDiv">
+      <button id="flowerBtn">New Flower</button>
+    </div>
   </div>
   <div id="secondaryCanvasDiv">
     <canvas id="secondaryCanvasActual" width="352" height="512"></canvas>
@@ -19,9 +22,6 @@ document.querySelector('#app').innerHTML = `
     <button id="left">Left</button><button id="right">Right</button>
     <br>
     <button id="down">Down</button>
-  </div>
-  <div id="newFlowerDiv">
-    <button id="flowerBtn">New Flower</button>
   </div>
   <div id="endButtonDiv">
     <button id="reset">Start Again</button>

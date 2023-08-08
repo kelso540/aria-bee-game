@@ -11,6 +11,7 @@ let primary = {
     leftBtn: document.getElementById("left"),
     rightBtn: document.getElementById("right"),
     downBtn: document.getElementById("down"),
+    flowerBtn: document.getElementById("flowerBtn"), 
     ctxWidth: 352, 
     ctxHeight: 512, 
     upMovement: 0, 
@@ -120,12 +121,12 @@ class Sound {
         this.sound.pause();
     }
 }
-let tree = new MapObject(images.treePic, 1400, 360, 350, 400);
+let tree = new MapObject(images.treePic, 1300, 100, 350, 400); //x, y, width, height
 let player1 = new Player(images.playerRight, 0, 0, 50, 50);
 let playerPoints = new Player(images.playerRight, 0, 0, 50, 50);
 let newFlower = new MapObject(images.flowerD, 600, 1000, 100, 100); 
-let beeHive = new MapObject(images.beeHivePic1, 1350, 450, 250, 250); 
-let honeyPot= new MapObject(images.potEmpty, 150, 300, 150, 200);
+let honeyPot= new MapObject(images.potEmpty, (c.width/2) - 50, (c.height/2) + 90, 100, 150);
+let beeHive = new MapObject(images.beeHivePic1, 1250, 190, 250, 250); 
 let beeHiveNoise = new Sound("/assets/sounds/beeHiveNoise.mp4");
 let getFlowerNoise = new Sound("/assets/sounds/getFlower.mp4"); 
 let walkAroundNoise = new Sound("/assets/sounds/walkAround.mp4");
@@ -156,26 +157,11 @@ let getDistance = (entity1, entity2) => {	//return distance (number)
     primary.distance = Math.sqrt(vx*vx+vy*vy);
     return Math.sqrt(vx*vx+vy*vy);
 };
-let testHitRectObject = (object1, object2) => { //collision tester part two. 
-    return object1.x <= object2.x + object2.width
-        && object2.x <= object1.x + object1.width
-        && object1.y <= object2.y + object2.height
-        && object2.y <= object1.y + object1.height;
-};
-let testHitRect = (object1, object2) => { //collision tester part one.  
-    let rect1 = {
-        x: object1.x - object1.width / 2,
-        y: object1.y - object1.height / 2,
-        width: object1.width, 
-        height: object1.height
-    }
-    let rect2 = {
-        x: object2.x - object2.width / 2 + 170,
-        y: object2.y - object2.height / 2,
-        width: object2.width - 150,
-        height: object2.height
-    }
-    return testHitRectObject(rect1, rect2);
+let testHitRectObject = (player, hive) => { //collision tester part two. 
+    return player.x <= (hive.x + hive.width) - 80
+        && hive.x + 80 <= player.x + player.width
+        && player.y <= (hive.y + hive.height) - 80
+        && hive.y + 80 <= player.y + player.height;
 };
 let array = [18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -341,13 +327,12 @@ let begin = () => {
 };
 let endStart = () => { 
     ctx3.clearRect(0, 0, primary.ctxWidth, primary.ctxHeight);
-    ctx3.font = "small-caps bold 45px Trebuchet MS";
+    ctx3.font = "small-caps bold 25px Trebuchet MS";
     ctx3.fillStyle = "orange";
     ctx3.textAlign = "center";
     ctx3.fillText("You did it!", 180, 50); 
     ctx3.fillText("Your hive is filled with honey!", 180, 80); 
-    ctx3.fillText("Your set for the Winter!", 180, 110); 
-    ctx3.fillText("Great Job!", 180, 150);
+    ctx3.fillText("Great Job!", 180, 110);
     ctx3.drawImage(images.playerRight, 40, 360, 100, 150); 
     ctx3.drawImage(images.potFull, 180, 370, 90, 150);
 
@@ -424,18 +409,7 @@ Maps = function(id,imgSrc,grid){
 		if(gridY < 0 || gridY >= self.grid.length)
 			return true;
 		return self.grid[gridY][gridX];
-	}
-
-                // this.img = img;
-                // this.crpStart = crpStart; 
-                // this.crpEnd = crpEnd; 
-                // this.crpWidth = crpWidth; 
-                // this.crpHeight = crpHeight; 
-                // this.x = x; 
-                // this.y = y; 
-                // this.width = width; 
-                // this.height = height; 
-	
+	}	
 	self.draw = function(set){
 		let x = primary.ctxWidth/2 - player1.x;
 		let y = primary.ctxHeight/2 - player1.y;
@@ -471,9 +445,8 @@ let createNewFlower = () => {
     if(randomOneToFour === 4){
         newFlower.img = images.flowerD;   
     }
-
     if(Maps.current.isPositionWall(newFlower)){ 
-        return createNewFlower(); 
+        createNewFlower(); 
     }
 };
 Maps.current = Maps('area','/assets/testMap.png',array2D); 
@@ -858,26 +831,26 @@ let showHoneyPot = () => {
         honeyPot.img = images.potEmpty; 
         primary.potText = "Honey Pot Empty";
     }
-    if (primary.playerTotalHoney < 200 && primary.playerTotalHoney > 100){
+    if (primary.playerTotalHoney < 200 && primary.playerTotalHoney > 1){
         honeyPot.img = images.potSliver; 
-        primary.potText = "You Made Some Honey!";
+        primary.potText = "Made Some Honey!";
     }
     if (primary.playerTotalHoney < 400 && primary.playerTotalHoney > 200){
         honeyPot.img = images.potQuarter; 
-        primary.potText = "Honey Pot Quarter Full!";
+        primary.potText = "Pot Quarter Full!";
     }
     if (primary.playerTotalHoney < 600 && primary.playerTotalHoney > 400){
         honeyPot.img = images.potHalf; 
-        primary.potText = "Honey Pot Half Full!";
+        primary.potText = "Pot Half Full!";
     }
     if (primary.playerTotalHoney < 800 && primary.playerTotalHoney > 600){
         honeyPot.img = images.potAlmost; 
-        primary.potText = "Honey Pot Almost Full!";
+        primary.potText = "Pot Almost Full!";
     }
     if (primary.playerTotalHoney >= 800){
         honeyPot.img = images.potFull; 
         primary.potText = "Honey Pot Full!";
-        primary.potTextBelow = "You did it! Great Job!"; 
+        primary.potTextBelow = "You did it!"; 
         setTimeout(end, 5000); 
     }
 };
@@ -888,22 +861,22 @@ let start = () => {                                                             
     beeMovement(); 
     beeHiveMovement(beeHive);
     let getFlower = getDistance(playerPoints, newFlower);
-    let getHive = testHitRect(playerPoints, beeHive);
+    let getHive = testHitRectObject(playerPoints, beeHive);
     let toHive = getDistance(playerPoints, beeHive); 
     ctx.font = "12px Arial";
     ctx.textAlign = "center";
     ctx.fillStyle = "#E8871E";
     if(primary.playerHoneyAmount === 0){
-        ctx.fillText("If you cant", 60, 20); //x, y
-        ctx.fillText("find the flower", 60, 30);
-        ctx.fillText("Click Here", 60, 40);
-        ctx.font = "20px Arial";
+        ctx.fillText("If you cant", 50, 20); //x, y
+        ctx.fillText("get the flower", 50, 40);
+        ctx.fillText("Click Here", 50, 60);
+        ctx.font = "14px Arial";
         ctx.textAlign = "center";
         ctx.fillStyle = "#E8871E";
-        ctx.fillText("Distance to Flower", 650, 50); 
-        ctx.fillText(Math.floor(getFlower), 650, 80);
-        ctx.fillText("Pollen on Legs " + primary.playerHoneyAmount, 160, 1050);
-        ctx.fillText("Total Honey  " + primary.playerTotalHoney, 650, 1050);
+        ctx.fillText("Distance to Flower:", 250, 20); 
+        ctx.fillText(Math.floor(getFlower), 327, 20);
+        ctx.fillText("Total Honey: " + primary.playerTotalHoney, 278, 40);
+        flowerBtn.style.display = "block";
     }
     if(getFlower < 70 && primary.playerHoneyAmount === 0){
         createNewFlower(); 
@@ -911,25 +884,27 @@ let start = () => {                                                             
         player1.img = images.beeWithPollenR; 
     }
     if(primary.playerHoneyAmount > 1){
-        ctx.fillText("Return to Hive!", 400, 50);
-        ctx.fillText("", 400, 100);
-        ctx.fillText("Pollen on Legs " + primary.playerHoneyAmount, 160, 1150);
-        ctx.fillText("Total Honey  " + primary.playerTotalHoney, 650, 1150);
+        ctx.fillText("Return to Hive!", c.width/2, 20);
+        ctx.fillText("Pollen on Legs " + primary.playerHoneyAmount, c.width/2, 40);
+        ctx.fillText("Total Honey  " + primary.playerTotalHoney, c.width/2, 60);
+        ctx.fillText(`Distance to Hive: ${Math.floor(toHive)}`, c.width/2, 80); 
+        flowerBtn.style.display = "none"; 
     }
     if(getFlower < 50 && primary.playerHoneyAmount > 1){ 
-        ctx.fillText("Pollen Full!", 400, 100);
-        ctx.fillText("", 400, 100);
-        ctx.fillText("Pollen on Legs " + primary.playerHoneyAmount, 160, 1150);
-        ctx.fillText("Total Honey  " + primary.playerTotalHoney, 650, 1150);
+        ctx.fillText("Pollen Full!", c.width/2, (c.height/2) - 70);
+        ctx.fillText("Pollen on Legs " + primary.playerHoneyAmount, c.width/2, 40);
+        ctx.fillText("Total Honey  " + primary.playerTotalHoney, c.width/2, 60);
+        ctx.fillText(`Distance to Hive: ${Math.floor(toHive)}`, c.width/2, 80); 
+        flowerBtn.style.display = "none";
     }
     if(getHive){
         primary.playerTotalHoney += primary.playerHoneyAmount;
         primary.playerHoneyAmount = 0;
         player1.img = images.playerLeft;
         showHoneyPot();
-        ctx.fillText(primary.potText, 230, 280);
+        ctx.fillText(primary.potText, 65, c.height - 10);
         ctx.drawImage(honeyPot.img, honeyPot.x, honeyPot.y, honeyPot.width, honeyPot.height);
-        ctx.fillText(primary.potTextBelow, 400, 150);    
+        ctx.fillText(primary.potTextBelow, 285, c.height - 10);    
     }
     if(toHive <= 300){
         hiveNoiseTrigger(285); 
@@ -948,33 +923,6 @@ let start = () => {                                                             
         primary.honeyDropNoise = 0;  
     }       
 };
-// let resizeCanvas = () => { //resize canvas to page size(increase pixel COUNT). 
-//     canvas_ctxWidth = window.innerWidth - 4;
-//     canvas_ctxHeight = window.innerHeight - 4;
-//     c.width = primary.ctxWidth; 
-//     c.height = primary.ctxHeight; 
-//     c.mozImageSmoothingEnabled = false; 
-//     c.msImageSmoothingEnabled = false;
-//     c.imageSmoothingEnabled = false;
-//     c.style.width = ' ' + canvas_ctxWidth + 'px'; 
-//     c.style.height  = ' ' + canvas_ctxHeight + 'px';
-//     c2.width = primary.ctxWidth; 
-//     c2.height = primary.ctxHeight; 
-//     c2.mozImageSmoothingEnabled = false; 
-//     c2.msImageSmoothingEnabled = false;
-//     c2.imageSmoothingEnabled = false;
-//     c2.style.width = ' ' + canvas_ctxWidth + 'px'; 
-//     c2.style.height  = ' ' + canvas_ctxHeight + 'px';        
-//     c3.width = primary.ctxWidth; 
-//     c3.height = primary.ctxHeight; 
-//     c3.mozImageSmoothingEnabled = false; 
-//     c3.msImageSmoothingEnabled = false;
-//     c3.imageSmoothingEnabled = false;
-//     c3.style.width = ' ' + canvas_ctxWidth + 'px'; 
-//     c3.style.height  = ' ' + canvas_ctxHeight + 'px';
-// };
-// window.addEventListener("resize", resizeCanvas); 
-// resizeCanvas(); 
 beginningSegment();  
 primary.upBtn.addEventListener("mousedown", startUp); 
 primary.upBtn.addEventListener("mouseup", endUp);  
@@ -1001,6 +949,6 @@ document.getElementById("endButtonDiv").addEventListener("click", beginningSegme
 document.getElementById("flowerBtn").addEventListener("click", createNewFlower); 
 
 
-// document.querySelector("html").addEventListener('contextmenu', function(e){ //disable right click menu(for long click on mobile)
-//     e.preventDefault();
-//     });
+document.querySelector("html").addEventListener('contextmenu', function(e){ //disable right click menu(for long click on mobile)
+    e.preventDefault();
+});
